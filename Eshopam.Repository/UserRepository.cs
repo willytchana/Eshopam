@@ -55,16 +55,17 @@ namespace Eshopam.Repository
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
 
-            var oldUser = new EshopamEntities().Users.Find(user.Id);
+            var currentDb = new EshopamEntities();
+            var oldUser = currentDb.Users.Find(user.Id);
 
             if (oldUser == null)
                 throw new KeyNotFoundException($"User not found !");
 
-            var u = Get(user.Username);
+            var u = currentDb.Users.FirstOrDefault(x => x.Username == user.Username);
             if (u != null && u.Id != oldUser.Id)
                 throw new DuplicateWaitObjectException($"Username {user.Username} already exist !");
 
-            user.Password = oldUser.Password != user.Password ? CreateMD5Hash(user.Password) : oldUser.Password;
+            user.Password = !string.IsNullOrEmpty(user.Password) && oldUser.Password != user.Password ? CreateMD5Hash(user.Password) : oldUser.Password;
 
             db.Entry(user).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();

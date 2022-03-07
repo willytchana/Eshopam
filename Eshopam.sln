@@ -7,6 +7,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Eshopam.Database", "Eshopam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshopam.Repository", "Eshopam.Repository\Eshopam.Repository.csproj", "{A3A18FC5-7507-4B1C-9BB2-451ED8865A43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshopam.WebApi", "Eshopam.WebApi\Eshopam.WebApi.csproj", "{0AF102F1-0599-45FB-BE96-80C9FDE255BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{A3A18FC5-7507-4B1C-9BB2-451ED8865A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3A18FC5-7507-4B1C-9BB2-451ED8865A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3A18FC5-7507-4B1C-9BB2-451ED8865A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF102F1-0599-45FB-BE96-80C9FDE255BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF102F1-0599-45FB-BE96-80C9FDE255BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF102F1-0599-45FB-BE96-80C9FDE255BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF102F1-0599-45FB-BE96-80C9FDE255BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
