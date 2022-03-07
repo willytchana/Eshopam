@@ -48,37 +48,63 @@ namespace Eshopam.WebApi.Controllers
         [HttpPost]
         public IHttpActionResult Post(UserModel model)
         {
-            if (model == null)
-                return BadRequest();
+            try
+            {
+                if (model == null)
+                    return BadRequest();
 
-            var user = new User
-            (
-                0,
-                model.Username,
-                model.Password,
-                model.Fullname,
-                model.Role
-            );
-            user = userRepository.Add(user);
-            return Ok(new UserModel(user));
+                var user = new User
+                (
+                    0,
+                    model.Username,
+                    model.Password,
+                    model.Fullname,
+                    model.Role
+                );
+                user = userRepository.Add(user);
+                return Ok(new UserModel(user));
+            }
+            catch (DuplicateWaitObjectException)
+            {
+                return Conflict();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]
         public IHttpActionResult Put(UserModel model)
         {
-            if (model == null)
-                return BadRequest();
+            try
+            {
+                if (model == null)
+                    return BadRequest();
 
-            var user = new User
-            (
-                model.Id,
-                model.Username,
-                model.Password,
-                model.Fullname,
-                model.Role
-            );
-            user = userRepository.Set(user);
-            return Ok(new UserModel(user));
+                var user = new User
+                (
+                    model.Id,
+                    model.Username,
+                    model.Password,
+                    model.Fullname,
+                    model.Role
+                );
+                user = userRepository.Set(user);
+                return Ok(new UserModel(user));
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound();
+            }
+            catch (DuplicateWaitObjectException)
+            {
+                return Conflict();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

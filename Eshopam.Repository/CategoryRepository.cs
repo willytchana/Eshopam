@@ -45,12 +45,15 @@ namespace Eshopam.Repository
             if (category == null)
                 throw new ArgumentNullException(nameof(category));
 
-            var oldUser = new EshopamEntities().Users.Find(category.Id);
+            var currentDb = new EshopamEntities();
+
+            var oldUser = currentDb.Users.Find(category.Id);
 
             if (oldUser == null)
                 throw new KeyNotFoundException($"Category not found !");
 
-            var u = Get(category.Name);
+            var u = currentDb.Categories.FirstOrDefault(x => x.Name == category.Name);
+            
             if (u != null && u.Id != oldUser.Id)
                 throw new DuplicateWaitObjectException($"Category name {category.Name} already exist !");
 

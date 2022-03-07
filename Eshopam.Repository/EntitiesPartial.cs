@@ -18,4 +18,26 @@ namespace Eshopam.Repository
             Role = role;
         }
     }
+
+    public partial class Category
+    {
+        public Category()
+        {
+                
+        }
+
+        public Category(int id, string name, int userId)
+            : this()
+        {
+            Id = id;
+            Name = name;
+            UserId = userId;
+        }
+
+        public Category(int id, string name, int userId, User user)
+            : this(id, name, userId)
+        {     
+            User = user;
+        }
+    }
 }
