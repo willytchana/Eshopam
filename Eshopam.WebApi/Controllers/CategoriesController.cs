@@ -1,10 +1,8 @@
-﻿using Eshopam.Repository;
-using Eshopam.WebApi.Models;
+﻿using Eshopam.Models;
+using Eshopam.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace Eshopam.WebApi.Controllers
@@ -23,7 +21,7 @@ namespace Eshopam.WebApi.Controllers
             var category = categoryRepository.Get(id);
             if (category == null)
                 return NotFound();
-            return Ok(new CategoryModel(category));
+            return Ok(MapCategory(category));
         }
 
         [HttpGet]
@@ -32,7 +30,7 @@ namespace Eshopam.WebApi.Controllers
             var category = categoryRepository.Get(name);
             if (category == null)
                 return NotFound();
-            return Ok(new CategoryModel(category));
+            return Ok(MapCategory(category));
         }
 
 
@@ -47,7 +45,7 @@ namespace Eshopam.WebApi.Controllers
                 x.Name.ToLower().Contains(searchValue)
             );
 
-            return Ok(categories.Select( x => new CategoryModel(x)).ToArray());
+            return Ok(categories.Select(x => MapCategory(x)).ToArray());
         }
 
         [HttpPost]
@@ -67,7 +65,7 @@ namespace Eshopam.WebApi.Controllers
                 );
 
                 category = categoryRepository.Add(category);
-                return Ok(new CategoryModel(category));
+                return Ok(MapCategory(category));
             }
             catch (DuplicateWaitObjectException)
             {
@@ -78,6 +76,7 @@ namespace Eshopam.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
 
         [HttpPut]
         public IHttpActionResult Put(CategoryModel model)
@@ -94,7 +93,7 @@ namespace Eshopam.WebApi.Controllers
                     model.UserId
                 );
                 category = categoryRepository.Set(category);
-                return Ok(new CategoryModel(category));
+                return Ok(MapCategory(category));
             }
 
             catch (KeyNotFoundException ex)
@@ -115,7 +114,24 @@ namespace Eshopam.WebApi.Controllers
         public IHttpActionResult Delete(int id)
         {
             var category = categoryRepository.Delete(id);
-            return Ok(new CategoryModel(category));
+            return Ok(MapCategory(category));
+        }       
+        
+        private CategoryModel MapCategory(Category category)
+        {
+            return new CategoryModel
+            (
+                category.Id,
+                category.Name,
+                category.UserId,
+                new UserModel
+                (
+                    category.User.Id,
+                    category.User.Username,
+                    category.User.Fullname,
+                    category.User.Role
+                )
+            );
         }
     }
 }

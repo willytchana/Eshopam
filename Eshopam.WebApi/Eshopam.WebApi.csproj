@@ -97,8 +97,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CategoryModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +112,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Eshopam.Models\Eshopam.Models.csproj">
+      <Project>{44eb7003-ebd7-43cc-85e0-e10fc710058f}</Project>
+      <Name>Eshopam.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Eshopam.Repository\Eshopam.Repository.csproj">
       <Project>{A3A18FC5-7507-4B1C-9BB2-451ED8865A43}</Project>
       <Name>Eshopam.Repository</Name>

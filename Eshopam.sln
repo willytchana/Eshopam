@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshopam.Repository", "Eshop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshopam.WebApi", "Eshopam.WebApi\Eshopam.WebApi.csproj", "{0AF102F1-0599-45FB-BE96-80C9FDE255BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshopam.Models", "Eshopam.Models\Eshopam.Models.csproj", "{44EB7003-EBD7-43CC-85E0-E10FC710058F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{0AF102F1-0599-45FB-BE96-80C9FDE255BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AF102F1-0599-45FB-BE96-80C9FDE255BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AF102F1-0599-45FB-BE96-80C9FDE255BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44EB7003-EBD7-43CC-85E0-E10FC710058F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44EB7003-EBD7-43CC-85E0-E10FC710058F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44EB7003-EBD7-43CC-85E0-E10FC710058F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44EB7003-EBD7-43CC-85E0-E10FC710058F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

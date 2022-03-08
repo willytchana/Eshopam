@@ -1,10 +1,7 @@
-﻿using Eshopam.Repository;
-using Eshopam.WebApi.Models;
+﻿using Eshopam.Models;
+using Eshopam.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace Eshopam.WebApi.Controllers
@@ -23,7 +20,7 @@ namespace Eshopam.WebApi.Controllers
             var user = userRepository.Get(id);
             if (user == null)
                 return NotFound();
-            return Ok(new UserModel(user));
+            return Ok(MapUser(user));
         }
 
         [HttpGet]
@@ -32,7 +29,7 @@ namespace Eshopam.WebApi.Controllers
             var user = userRepository.Get(username);
             if (user == null)
                 return NotFound();
-            return Ok(new UserModel(user));
+            return Ok(MapUser(user));
         }
 
 
@@ -42,7 +39,7 @@ namespace Eshopam.WebApi.Controllers
             var user = userRepository.Get(username, password);
             if (user == null)
                 return NotFound();
-            return Ok(new UserModel(user));
+            return Ok(MapUser(user));
         }
 
         [HttpPost]
@@ -62,7 +59,7 @@ namespace Eshopam.WebApi.Controllers
                     model.Role
                 );
                 user = userRepository.Add(user);
-                return Ok(new UserModel(user));
+                return Ok(MapUser(user));
             }
             catch (DuplicateWaitObjectException)
             {
@@ -91,9 +88,9 @@ namespace Eshopam.WebApi.Controllers
                     model.Role
                 );
                 user = userRepository.Set(user);
-                return Ok(new UserModel(user));
+                return Ok(MapUser(user));
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
@@ -105,6 +102,17 @@ namespace Eshopam.WebApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        private UserModel MapUser(User user)
+        {
+            return new UserModel
+            (
+                user.Id,
+                user.Username,
+                user.Fullname,
+                user.Role
+            );
         }
     }
 }

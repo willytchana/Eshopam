@@ -1,10 +1,4 @@
-﻿using Eshopam.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Eshopam.WebApi.Models
+﻿namespace Eshopam.Models
 {
     public class UserModel
     {
@@ -19,7 +13,7 @@ namespace Eshopam.WebApi.Models
 
         }
 
-        public UserModel(int id, string username, string fullname, string role)
+        public UserModel(int id, string username, string fullname, string role):this()
         {
             Id = id;
             Username = username;
@@ -27,19 +21,10 @@ namespace Eshopam.WebApi.Models
             Role = role;
         }
 
-
-
         public UserModel(int id, string username, string fullname, string role, string password)
             : this(id, username, fullname, role)
         {
             Password = password;
-        }
-
-
-        public UserModel(User user)
-            :this(user?.Id ?? 0, user?.Username, user?.Fullname, user?.Role)
-        {
-
         }
     }
 }
