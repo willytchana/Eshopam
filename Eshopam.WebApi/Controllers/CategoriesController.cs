@@ -96,7 +96,7 @@ namespace Eshopam.WebApi.Controllers
                 return Ok(MapCategory(category));
             }
 
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
