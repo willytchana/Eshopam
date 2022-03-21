@@ -43,7 +43,7 @@ namespace Eshopam.WebApi.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult Post(UserModel model)
+        public IHttpActionResult Post([FromBody]UserModel model)
         {
             try
             {

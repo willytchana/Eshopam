@@ -1,6 +1,7 @@
 ﻿using Eshopam.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -15,10 +16,30 @@ namespace Eshopam.Services
             client.BaseAddress = new Uri(baseAddress);
         }
 
-        public async Task<UserModel> Login(string username, string password)
+        public async Task<UserModel> GetAsync(int id)
         {
             //http://localhost:8180/api
-            string url = $"/Users/username={username}&password={password}";
+            string url = $"/Users/{id}";
+            var response = await client.GetAsync(url);
+            var data = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<UserModel>(data);
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                throw new KeyNotFoundException("User not found !");
+            }
+            else
+            {
+                throw new Exception($"Error status code : {response.StatusCode} \n {data}");
+            }
+        }
+
+        public async Task<UserModel> LoginAsync(string username, string password)
+        {
+            //http://localhost:8180/api
+            string url = $"Users?username={username}&password={password}";
             var response = await client.GetAsync(url);
             var data = await response.Content.ReadAsStringAsync();
             if(response.IsSuccessStatusCode)
@@ -27,12 +48,70 @@ namespace Eshopam.Services
             }
             else if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                throw new UnauthorizedAccessException("Username or password is incorrect !");
+                throw new UnauthorizedAccessException("User name or password is incorrect !");
             }
             else
             {
                 throw new Exception($"Error status code : {response.StatusCode} \n {data}");
             }
         }
+
+        public async Task<UserModel> CreateAsync(UserModel user)
+        {
+            //http://localhost:8180/api
+            string url = $"/Users";
+            StringContent content = new StringContent
+            (
+                JsonConvert.SerializeObject(user),
+                System.Text.Encoding.UTF8,
+                "application/json"
+            );
+            var response = await client.PostAsync(url, content);
+            var data = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<UserModel>(data);
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                throw new DuplicateWaitObjectException($"User name {user.Username} already exists !");
+            }
+            else
+            {
+                throw new Exception($"Error status code : {response.StatusCode} \n {data}");
+            }
+        }
+
+        public async Task<UserModel> UpdateAsync(UserModel user)
+        {
+            //http://localhost:8180/api
+            string url = $"/Users";
+            StringContent content = new StringContent
+            (
+                JsonConvert.SerializeObject(user),
+                System.Text.Encoding.UTF8,
+                "application/json"
+            );
+            var response = await client.PutAsync(url, content);
+            var data = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<UserModel>(data);
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                throw new KeyNotFoundException($"User id {user.Id} not found !");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                throw new DuplicateWaitObjectException($"User name {user.Username} already exists !");
+            }
+            else
+            {
+                throw new Exception($"Error status code : {response.StatusCode} \n {data}");
+            }
+        }
+
+
     }
 }

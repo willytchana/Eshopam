@@ -6,6 +6,7 @@ namespace Eshopam.Mobile
 {
     public partial class App : Application
     {
+        public const string ServiceBaseAddress = "http://192.168.137.1:8180/api/";
         public App()
         {
             InitializeComponent();
