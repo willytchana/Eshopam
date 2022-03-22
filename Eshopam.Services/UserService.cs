@@ -18,7 +18,6 @@ namespace Eshopam.Services
 
         public async Task<UserModel> GetAsync(int id)
         {
-            //http://localhost:8180/api
             string url = $"/Users/{id}";
             var response = await client.GetAsync(url);
             var data = await response.Content.ReadAsStringAsync();
@@ -38,7 +37,6 @@ namespace Eshopam.Services
 
         public async Task<UserModel> LoginAsync(string username, string password)
         {
-            //http://localhost:8180/api
             string url = $"Users?username={username}&password={password}";
             var response = await client.GetAsync(url);
             var data = await response.Content.ReadAsStringAsync();
@@ -58,8 +56,7 @@ namespace Eshopam.Services
 
         public async Task<UserModel> CreateAsync(UserModel user)
         {
-            //http://localhost:8180/api
-            string url = $"/Users";
+            string url = $"Users";
             StringContent content = new StringContent
             (
                 JsonConvert.SerializeObject(user),
@@ -84,8 +81,7 @@ namespace Eshopam.Services
 
         public async Task<UserModel> UpdateAsync(UserModel user)
         {
-            //http://localhost:8180/api
-            string url = $"/Users";
+            string url = $"Users";
             StringContent content = new StringContent
             (
                 JsonConvert.SerializeObject(user),

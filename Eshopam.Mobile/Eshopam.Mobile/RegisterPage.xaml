@@ -1,19 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Eshopam.Mobile.MainPage"
-             Style="{StaticResource ContentPageStyle}"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="Eshopam.Mobile.RegisterPage"
+             Style="{StaticResource ContentPageStyle}">
+    <NavigationPage.TitleView>
+        <StackLayout BackgroundColor="#faebd7">
+            <Label Text="Register"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
     <ScrollView>
         <Grid>
             <StackLayout Spacing="10" 
                          VerticalOptions="Center" 
                          Padding="20">
-                <Label Text="Log in" 
+                <Label Text="Sign in" 
                        FontFamily="FontSamantha"
-                       FontSize="100" 
+                       FontSize="100"  
                        HorizontalTextAlignment="Center" />
-                <Entry x:Name="TxtUserName" Placeholder="Enter your user name" />
+                <Entry x:Name="TxtFullName" 
+                       Placeholder="Enter your full name" />
+                <Entry x:Name="TxtUserName" 
+                       Placeholder="Enter your user name" />
+
                 <StackLayout Orientation="Horizontal">
                     <Entry x:Name="TxtPassword"  
                            IsPassword="True" 
@@ -29,20 +37,15 @@
                         </ImageButton.Source>
                     </ImageButton>
                 </StackLayout>
-                <Button x:Name="BtnConnect" Text="Connect" 
-                    Style="{DynamicResource ButtonStyle}"
-                    Clicked="BtnConnect_Clicked"/>
-                <StackLayout Orientation="Horizontal">
-                    <Button x:Name="BtnRegister" 
-                            Text="Register" 
+                <Button x:Name="BtnSave" 
+                        Text="Save" 
+                        Style="{DynamicResource ButtonStyle}"
+                        Clicked="BtnSave_Clicked"/>
+                    <Button x:Name="BtnLogin" 
+                            Text="Login" 
                             BackgroundColor="Transparent" 
-                            TextColor="Green"
-                            Clicked="BtnRegister_Clicked"/>
-                    <Button Text="Forgotten password?" 
-                            BackgroundColor="Transparent"
-                            TextColor="Black"
-                            HorizontalOptions="EndAndExpand" />
-                </StackLayout>
+                            TextColor="Green" 
+                            Clicked="BtnLogin_Clicked"/>
             </StackLayout>
             <ActivityIndicator x:Name="Loader" 
                                VerticalOptions="Center" 
