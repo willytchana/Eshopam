@@ -104,8 +104,11 @@ namespace Eshopam.WebApi.Controllers
             }
         }
 
-        private UserModel MapUser(User user)
+        public static UserModel MapUser(User user)
         {
+            if (user == null)
+                return null;
+
             return new UserModel
             (
                 user.Id,

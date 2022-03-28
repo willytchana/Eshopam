@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="Eshopam.Repository.Category" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Eshopam.Repository.User" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="Eshopam.Repository.FK_Category_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Eshopam.Repository.Product" Width="1.5" PointX="2.375" PointY="3.625" />
+        <EntityTypeShape EntityType="Eshopam.Repository.Product" Width="1.5" PointX="5.25" PointY="0.75" />
         <AssociationConnector Association="Eshopam.Repository.FK_Product_Category" />
         <AssociationConnector Association="Eshopam.Repository.FK_Product_User" />
       </Diagram>

@@ -117,8 +117,11 @@ namespace Eshopam.WebApi.Controllers
             return Ok(MapCategory(category));
         }       
         
-        private CategoryModel MapCategory(Category category)
+        public static CategoryModel MapCategory(Category category)
         {
+            if (category == null)
+                return null;
+
             return new CategoryModel
             (
                 category.Id,

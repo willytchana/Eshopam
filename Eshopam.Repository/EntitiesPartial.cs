@@ -1,4 +1,6 @@
-﻿namespace Eshopam.Repository
+﻿using System;
+
+namespace Eshopam.Repository
 {
     public partial class User
     {
@@ -49,6 +51,7 @@
             Photo = photo;
             CategoryId = categoryId;
             UserId = userId;
+            CreatedAt = DateTime.UtcNow.AddHours(1);
         }
     }
 }

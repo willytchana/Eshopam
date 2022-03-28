@@ -25,6 +25,7 @@
           <Property Name="Photo" Type="varbinary(max)" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -162,6 +163,7 @@
           <Property Name="Photo" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Category" Relationship="Eshopam.Repository.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="User" Relationship="Eshopam.Repository.FK_Product_User" FromRole="Product" ToRole="User" />
         </EntityType>
@@ -220,6 +222,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="Eshopam.Repository.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />

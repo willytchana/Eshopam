@@ -56,6 +56,9 @@ namespace Eshopam.Repository
             if (u != null && u.Id != oldProduct.Id)
                 throw new DuplicateWaitObjectException($"Product code {product.Code} already exist !");
 
+            if (product.Photo == null)
+                product.Photo = oldProduct.Photo;
+
             db.Entry(product).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
