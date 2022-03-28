@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Eshopam.Mobile.ProductEdit"
+             Style="{StaticResource ContentPageStyle}"
+             NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <Grid>
+            <StackLayout Spacing="10" 
+                         VerticalOptions="Center" 
+                         Padding="20">
+                <Label Text="Edit product" 
+                       FontFamily="FontSamantha"
+                       FontSize="100" 
+                       HorizontalTextAlignment="Center" />
+                <Entry x:Name="TxtCode" 
+                       Placeholder="Enter product code" />
+                <Entry x:Name="TxtName" 
+                       Placeholder="Enter product name" />
+                <Entry x:Name="TxtPrice" 
+                       Placeholder="Enter product price"
+                       Keyboard="Numeric"/>
+                <Editor x:Name="TxtDescription" 
+                       Placeholder="Enter product description"
+                       AutoSize="TextChanges"
+                       />
+                <Picker x:Name="CbCategory"/>
+                <Button x:Name="BtnNext" 
+                        Text="Next"
+                        Style="{DynamicResource ButtonStyle}"
+                        Clicked="BtnNext_Clicked"
+                        ContentLayout="Right, 0">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="FontFaSolid900"
+                                         Glyph="&#xf105;"/>
+                    </Button.ImageSource>
+                </Button>
+                <Button x:Name="BtnCancel" 
+                            Text="Cancel" 
+                            TextColor="#666"
+                            BackgroundColor="Transparent" 
+                            Clicked="BtnCancel_Clicked"/>
+            </StackLayout>
+            <ActivityIndicator x:Name="Loader" 
+                               VerticalOptions="Center" 
+                               IsVisible="False" 
+                               IsRunning="True"/>
+        </Grid>       
+    </ScrollView>
+</ContentPage>

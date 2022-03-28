@@ -19,16 +19,12 @@ namespace Eshopam.Services
 
         public async Task<IEnumerable<ProductModel>> GetAsync()
         {
-            string url = $"/Products";
+            string url = $"Products";
             var response = await client.GetAsync(url);
             var data = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<IEnumerable<ProductModel>>(data);
-            }
-            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                throw new KeyNotFoundException("Product not found !");
             }
             else
             {
@@ -38,7 +34,7 @@ namespace Eshopam.Services
 
         public async Task<ProductModel> GetAsync(int id)
         {
-            string url = $"/Products/{id}";
+            string url = $"Products/{id}";
             var response = await client.GetAsync(url);
             var data = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)

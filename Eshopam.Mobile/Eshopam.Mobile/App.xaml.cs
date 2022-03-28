@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eshopam.Models;
+using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,7 +24,7 @@ namespace Eshopam.Mobile
                     //serviceBaseAddress = "https://eshopam.com/api/";
             //#endif
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage(new UserModel()));
         }
 
         protected override void OnStart()

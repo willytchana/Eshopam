@@ -8,7 +8,7 @@
                 <Setter Property="BackgroundColor" Value="#faebd7" />
             </Style>
             <Style TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#0000FF" />
+                <Setter Property="BackgroundColor" Value="CornflowerBlue" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
             <Style TargetType="NavigationPage">

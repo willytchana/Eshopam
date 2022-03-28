@@ -18,7 +18,7 @@ namespace Eshopam.Services
 
         public async Task<UserModel> GetAsync(int id)
         {
-            string url = $"/Users/{id}";
+            string url = $"Users/{id}";
             var response = await client.GetAsync(url);
             var data = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)

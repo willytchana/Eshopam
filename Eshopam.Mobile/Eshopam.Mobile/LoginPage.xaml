@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Eshopam.Mobile.LoginPage"
+             Style="{StaticResource ContentPageStyle}"
+             NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <Grid>
+            <StackLayout Spacing="10" 
+                         VerticalOptions="Center" 
+                         Padding="20">
+                <Label Text="Log in" 
+                       FontFamily="FontSamantha"
+                       FontSize="100" 
+                       HorizontalTextAlignment="Center" />
+                <Entry x:Name="TxtUserName" Placeholder="Enter your user name" />
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="TxtPassword"  
+                           IsPassword="True" 
+                           Placeholder="Enter your password" 
+                           HorizontalOptions="FillAndExpand"/>
+                    <ImageButton x:Name="BtnEye" 
+                                 BackgroundColor="Transparent"
+                                 Clicked="BtnEye_Clicked">
+                        <ImageButton.Source>
+                            <FontImageSource x:Name="FisEye" FontFamily="FontFaSolid900"
+                                             Color="Black"
+                                             Glyph="&#xf06e;"/>
+                        </ImageButton.Source>
+                    </ImageButton>
+                </StackLayout>
+                <Button x:Name="BtnConnect" Text="Connect" 
+                    Style="{DynamicResource ButtonStyle}"
+                    Clicked="BtnConnect_Clicked"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="BtnRegister" 
+                            Text="Register" 
+                            BackgroundColor="Transparent" 
+                            TextColor="Green"
+                            Clicked="BtnRegister_Clicked"/>
+                    <Button Text="Forgotten password?" 
+                            BackgroundColor="Transparent"
+                            TextColor="Black"
+                            HorizontalOptions="EndAndExpand" />
+                </StackLayout>
+            </StackLayout>
+            <ActivityIndicator x:Name="Loader" 
+                               VerticalOptions="Center" 
+                               IsVisible="False" 
+                               IsRunning="True"/>
+        </Grid>       
+    </ScrollView>
+</ContentPage>

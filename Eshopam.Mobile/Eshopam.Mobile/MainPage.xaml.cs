@@ -1,4 +1,5 @@
-﻿using Eshopam.Services;
+﻿using Eshopam.Models;
+using Eshopam.Services;
 using System;
 using Xamarin.Forms;
 
@@ -6,43 +7,18 @@ namespace Eshopam.Mobile
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        private readonly UserModel user;
+
+        public MainPage(UserModel user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
-        private async void BtnConnect_Clicked(object sender, EventArgs e)
-        {
-            Loader.IsVisible = true;
-            BtnConnect.IsEnabled = false;
-            try
-            {
-                UserService service = new UserService(App.ServiceBaseAddress);
-                var user = await service.LoginAsync(TxtUserName.Text, TxtPassword.Text);
-                await DisplayAlert("Good", user.Fullname, "Ok");
-            }
-            catch(UnauthorizedAccessException ex)
-            {
-                await DisplayAlert("Bad", ex.Message, "Ok");
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-                await DisplayAlert("Bad", "An error occured !", "Ok");
-            }
-            Loader.IsVisible = false;
-            BtnConnect.IsEnabled = true;
-        }
 
-        private async void BtnRegister_Clicked(object sender, EventArgs e)
+        private async void ClickGestureRecognizer_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterPage());
-        }
-
-        private void BtnEye_Clicked(object sender, EventArgs e)
-        {
-            TxtPassword.IsPassword = !TxtPassword.IsPassword;
-            FisEye.FontFamily = TxtPassword.IsPassword ? "FontFaSolid900" : "FontFaRegular400";
+            await Navigation.PushModalAsync(new ProductEdit(user), true);
         }
     }
 }

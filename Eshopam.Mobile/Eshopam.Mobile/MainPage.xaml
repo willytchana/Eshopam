@@ -2,52 +2,150 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Eshopam.Mobile.MainPage"
-             Style="{StaticResource ContentPageStyle}"
-             NavigationPage.HasNavigationBar="False">
-    <ScrollView>
-        <Grid>
-            <StackLayout Spacing="10" 
-                         VerticalOptions="Center" 
-                         Padding="20">
-                <Label Text="Log in" 
-                       FontFamily="FontSamantha"
-                       FontSize="100" 
-                       HorizontalTextAlignment="Center" />
-                <Entry x:Name="TxtUserName" Placeholder="Enter your user name" />
-                <StackLayout Orientation="Horizontal">
-                    <Entry x:Name="TxtPassword"  
-                           IsPassword="True" 
-                           Placeholder="Enter your password" 
-                           HorizontalOptions="FillAndExpand"/>
-                    <ImageButton x:Name="BtnEye" 
-                                 BackgroundColor="Transparent"
-                                 Clicked="BtnEye_Clicked">
-                        <ImageButton.Source>
-                            <FontImageSource x:Name="FisEye" FontFamily="FontFaSolid900"
-                                             Color="Black"
-                                             Glyph="&#xf06e;"/>
-                        </ImageButton.Source>
-                    </ImageButton>
-                </StackLayout>
-                <Button x:Name="BtnConnect" Text="Connect" 
-                    Style="{DynamicResource ButtonStyle}"
-                    Clicked="BtnConnect_Clicked"/>
-                <StackLayout Orientation="Horizontal">
-                    <Button x:Name="BtnRegister" 
-                            Text="Register" 
-                            BackgroundColor="Transparent" 
-                            TextColor="Green"
-                            Clicked="BtnRegister_Clicked"/>
-                    <Button Text="Forgotten password?" 
-                            BackgroundColor="Transparent"
-                            TextColor="Black"
-                            HorizontalOptions="EndAndExpand" />
-                </StackLayout>
+             Style="{StaticResource ContentPageStyle}">
+    <NavigationPage.TitleView>
+        <StackLayout BackgroundColor="#faebd7"
+                     Orientation="Horizontal"
+                     Spacing="10">
+            <Label Text="Eshopam"
+                   FontFamily="FontSamantha"
+                   FontSize="50"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="Center"/>
+            <StackLayout Spacing="20"
+                         Orientation="Horizontal"
+                         Margin="0, 0, 10, 0">
+            <ImageButton BackgroundColor="Transparent">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="&#xf002;"
+                                     FontFamily="FontFaSolid900"
+                                     Color="#666"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <ImageButton BackgroundColor="Transparent">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="&#xf2bd;"
+                                     FontFamily="FontFaRegular400"
+                                     Color="#666"/>
+                </ImageButton.Source>
+            </ImageButton>
+                
             </StackLayout>
-            <ActivityIndicator x:Name="Loader" 
-                               VerticalOptions="Center" 
-                               IsVisible="False" 
-                               IsRunning="True"/>
-        </Grid>       
-    </ScrollView>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <Grid>
+        <Frame VerticalOptions="Start"
+               CornerRadius="20"
+               Margin="5"
+               Padding="0"
+               BackgroundColor="#faebd7">
+            <Grid ColumnDefinitions="150,*">
+                <Image Source="icon.png" Aspect="AspectFill"/>
+                <StackLayout VerticalOptions="Center"
+                             Grid.Column="1">
+                    <Label Text="Product name"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           LineBreakMode="TailTruncation"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0, 0, 20, 0">
+                        <Label Text="Price"
+                               FontSize="Subtitle"
+                               FontAttributes="Bold"
+                               TextColor="CornflowerBlue"
+                               LineBreakMode="TailTruncation"
+                               VerticalOptions="Center"
+                               HorizontalOptions="StartAndExpand"/>
+                        <Label Text="Post date"
+                               FontSize="Micro"
+                               FontAttributes="Italic"
+                               LineBreakMode="TailTruncation"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End"
+                               HorizontalTextAlignment="End"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="20"
+                                 Margin="0, 10, 0, 0">
+                        <StackLayout Spacing="0">
+                            <ImageButton BackgroundColor="Transparent">
+                                <ImageButton.Source>
+                                    <FontImageSource Glyph="&#xf004;"
+                                                     FontFamily="FontFaRegular400"
+                                                     Color="#666"/>
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="10k" 
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Spacing="0">
+                            <ImageButton BackgroundColor="Transparent">
+                                <ImageButton.Source>
+                                    <FontImageSource Glyph="&#xf556;"
+                                                     FontFamily="FontFaRegular400"
+                                                     Color="#666"/>
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="7"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Spacing="0">
+                            <ImageButton BackgroundColor="Transparent">
+                                <ImageButton.Source>
+                                    <FontImageSource Glyph="&#xf1e0;"
+                                                     FontFamily="FontFaSolid900"
+                                                     Color="#666"/>
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="5M"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Spacing="0">
+                            <ImageButton BackgroundColor="Transparent">
+                                <ImageButton.Source>
+                                    <FontImageSource Glyph="&#xf075;"
+                                                     FontFamily="FontFaRegular400"
+                                                     Color="#666"/>
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="1k"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Spacing="0">
+                            <ImageButton BackgroundColor="Transparent">
+                                <ImageButton.Source>
+                                    <FontImageSource Glyph="&#xf53b;"
+                                                     FontFamily="FontFaSolid900"
+                                                     Color="CornflowerBlue"/>
+                                </ImageButton.Source>
+                            </ImageButton>
+                            <Label Text="12"
+                                   HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </Frame>
+        <Frame HasShadow="True"
+                CornerRadius="50"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Margin="10"
+                BackgroundColor="CornflowerBlue">
+            <ImageButton BackgroundColor="Transparent"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            Clicked="ClickGestureRecognizer_Clicked">
+                <ImageButton.Source>
+                    <FontImageSource Glyph="&#x2b;"
+                                     FontFamily="FontFaSolid900"
+                                     Color="White"
+                                     Size="Large"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ClickGestureRecognizer_Clicked"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+    </Grid>       
 </ContentPage>

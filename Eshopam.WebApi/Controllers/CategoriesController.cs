@@ -14,7 +14,17 @@ namespace Eshopam.WebApi.Controllers
         {
             categoryRepository = new CategoryRepository();
         }
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
 
+            var categories = categoryRepository.Find
+            (
+                x => true
+            );
+
+            return Ok(categories.Select(x => MapCategory(x)).ToArray());
+        }
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
@@ -33,20 +43,6 @@ namespace Eshopam.WebApi.Controllers
             return Ok(MapCategory(category));
         }
 
-
-        [HttpGet]
-        public IHttpActionResult Find(string value)
-        {
-            var searchValue = value?.ToLower() ?? string.Empty;
-
-            var categories = categoryRepository.Find
-            (
-                x =>
-                x.Name.ToLower().Contains(searchValue)
-            );
-
-            return Ok(categories.Select(x => MapCategory(x)).ToArray());
-        }
 
         [HttpPost]
         public IHttpActionResult Post(CategoryModel model)
