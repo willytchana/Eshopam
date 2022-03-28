@@ -18,6 +18,7 @@ namespace Eshopam.Repository
         public User()
         {
             this.Categories = new HashSet<Category>();
+            this.Products = new HashSet<Product>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace Eshopam.Repository
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Category> Categories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

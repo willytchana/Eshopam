@@ -15,10 +15,6 @@
 
     public partial class Category
     {
-        public Category()
-        {
-                
-        }
 
         public Category(int id, string name, int userId)
             : this()
@@ -32,6 +28,27 @@
             : this(id, name, userId)
         {     
             User = user;
+        }
+    }
+
+    public partial class Product
+    {
+        public Product()
+        {
+
+        }
+
+        public Product(int id, string code, string name, string description,
+            float price, byte[] photo, int categoryId, int userId)
+        {
+            Id = id;
+            Code = code;
+            Name = name;
+            Description = description;
+            Price = price;
+            Photo = photo;
+            CategoryId = categoryId;
+            UserId = userId;
         }
     }
 }

@@ -31,7 +31,8 @@
                                  BackgroundColor="Transparent"
                                  Clicked="BtnEye_Clicked">
                         <ImageButton.Source>
-                            <FontImageSource x:Name="FisEye" FontFamily="FontFaSolid900"
+                            <FontImageSource x:Name="FisEye" 
+                                             FontFamily="FontFaSolid900"
                                              Color="Black"
                                              Glyph="&#xf06e;"/>
                         </ImageButton.Source>
