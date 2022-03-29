@@ -9,11 +9,13 @@ namespace Eshopam.Mobile
     public partial class ProductEdit : ContentPage
     {
         private readonly UserModel user;
+        private readonly Action callBack;
 
-        public ProductEdit(UserModel user)
+        public ProductEdit(UserModel user, Action callBack)
         {
             InitializeComponent();
             this.user = user;
+            this.callBack = callBack;
         }
 
         protected async override void OnAppearing()
@@ -38,7 +40,6 @@ namespace Eshopam.Mobile
             base.OnAppearing();
             Loader.IsVisible = false;
         }
-
         private async void BtnCancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
@@ -64,7 +65,7 @@ namespace Eshopam.Mobile
                     (CbCategory.SelectedItem as CategoryModel)?.Id ?? 0,
                     DateTime.Now
                 );
-                await Navigation.PushModalAsync(new ProductPhoto(user, product));
+                await Navigation.PushModalAsync(new ProductPhoto(user, product, callBack));
             }
             catch (InvalidOperationException ex)
             {

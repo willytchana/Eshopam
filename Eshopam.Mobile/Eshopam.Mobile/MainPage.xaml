@@ -34,98 +34,108 @@
         </StackLayout>
     </NavigationPage.TitleView>
     <Grid>
-        <Frame VerticalOptions="Start"
-               CornerRadius="20"
-               Margin="5"
-               Padding="0"
-               BackgroundColor="#faebd7">
-            <Grid ColumnDefinitions="150,*">
-                <Image Source="icon.png" Aspect="AspectFill"/>
-                <StackLayout VerticalOptions="Center"
-                             Grid.Column="1">
-                    <Label Text="Product name"
-                           FontSize="Medium"
-                           FontAttributes="Bold"
-                           LineBreakMode="TailTruncation"/>
-                    <StackLayout Orientation="Horizontal"
-                                 Margin="0, 0, 20, 0">
-                        <Label Text="Price"
-                               FontSize="Subtitle"
-                               FontAttributes="Bold"
-                               TextColor="CornflowerBlue"
-                               LineBreakMode="TailTruncation"
-                               VerticalOptions="Center"
-                               HorizontalOptions="StartAndExpand"/>
-                        <Label Text="Post date"
-                               FontSize="Micro"
-                               FontAttributes="Italic"
-                               LineBreakMode="TailTruncation"
-                               VerticalOptions="Center"
-                               HorizontalOptions="End"
-                               HorizontalTextAlignment="End"/>
+        <RefreshView x:Name="Rv" 
+                     Refreshing="RefreshView_Refreshing">
+            <CollectionView x:Name="CvProduct">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Frame VerticalOptions="Start"
+                               CornerRadius="20"
+                               Margin="0"
+                               Padding="0"
+                               BackgroundColor="#faebd7">
+                            <Grid ColumnDefinitions="150,*">
+                                <Image Source="{Binding Photo}" Aspect="AspectFill"/>
+                                <StackLayout VerticalOptions="Center"
+                                             Grid.Column="1">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="Medium"
+                                           FontAttributes="Bold"
+                                           LineBreakMode="TailTruncation"/>
+                                    <StackLayout Orientation="Horizontal"
+                                                 Margin="0, 0, 20, 0">
+                                        <Label Text="{Binding PriceToString}"
+                                               FontSize="Subtitle"
+                                               FontAttributes="Bold"
+                                               TextColor="CornflowerBlue"
+                                               LineBreakMode="TailTruncation"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="StartAndExpand"/>
+                                        <Label Text="{Binding CreatedAtToString}"
+                                               FontSize="Micro"
+                                               FontAttributes="Italic"
+                                               LineBreakMode="TailTruncation"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="End"
+                                               HorizontalTextAlignment="End"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="20">
+                                        <StackLayout Spacing="0">
+                                            <ImageButton BackgroundColor="Transparent">
+                                                <ImageButton.Source>
+                                                    <FontImageSource Glyph="&#xf004;"
+                                                                     FontFamily="FontFaRegular400"
+                                                                     Color="#666"/>
+                                                </ImageButton.Source>
+                                            </ImageButton>
+                                            <Label Text="10k" 
+                                                   HorizontalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Spacing="0">
+                                            <ImageButton BackgroundColor="Transparent">
+                                                <ImageButton.Source>
+                                                    <FontImageSource Glyph="&#xf556;"
+                                                                     FontFamily="FontFaRegular400"
+                                                                     Color="#666"/>
+                                                </ImageButton.Source>
+                                            </ImageButton>
+                                            <Label Text="7"
+                                                   HorizontalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Spacing="0">
+                                            <ImageButton BackgroundColor="Transparent">
+                                                <ImageButton.Source>
+                                                    <FontImageSource Glyph="&#xf1e0;"
+                                                                     FontFamily="FontFaSolid900"
+                                                                     Color="#666"/>
+                                                </ImageButton.Source>
+                                            </ImageButton>
+                                            <Label Text="5M"
+                                                   HorizontalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Spacing="0">
+                                            <ImageButton BackgroundColor="Transparent">
+                                                <ImageButton.Source>
+                                                    <FontImageSource Glyph="&#xf075;"
+                                                                     FontFamily="FontFaRegular400"
+                                                                     Color="#666"/>
+                                                </ImageButton.Source>
+                                            </ImageButton>
+                                            <Label Text="1k"
+                                                   HorizontalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout Spacing="0">
+                                            <ImageButton BackgroundColor="Transparent">
+                                                <ImageButton.Source>
+                                                    <FontImageSource Glyph="&#xf53b;"
+                                                                     FontFamily="FontFaSolid900"
+                                                                     Color="CornflowerBlue"/>
+                                                </ImageButton.Source>
+                                            </ImageButton>
+                                            <Label Text="12"
+                                                   HorizontalOptions="Center"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 Spacing="20"
-                                 Margin="0, 10, 0, 0">
-                        <StackLayout Spacing="0">
-                            <ImageButton BackgroundColor="Transparent">
-                                <ImageButton.Source>
-                                    <FontImageSource Glyph="&#xf004;"
-                                                     FontFamily="FontFaRegular400"
-                                                     Color="#666"/>
-                                </ImageButton.Source>
-                            </ImageButton>
-                            <Label Text="10k" 
-                                   HorizontalOptions="Center"/>
-                        </StackLayout>
-                        <StackLayout Spacing="0">
-                            <ImageButton BackgroundColor="Transparent">
-                                <ImageButton.Source>
-                                    <FontImageSource Glyph="&#xf556;"
-                                                     FontFamily="FontFaRegular400"
-                                                     Color="#666"/>
-                                </ImageButton.Source>
-                            </ImageButton>
-                            <Label Text="7"
-                                   HorizontalOptions="Center"/>
-                        </StackLayout>
-                        <StackLayout Spacing="0">
-                            <ImageButton BackgroundColor="Transparent">
-                                <ImageButton.Source>
-                                    <FontImageSource Glyph="&#xf1e0;"
-                                                     FontFamily="FontFaSolid900"
-                                                     Color="#666"/>
-                                </ImageButton.Source>
-                            </ImageButton>
-                            <Label Text="5M"
-                                   HorizontalOptions="Center"/>
-                        </StackLayout>
-                        <StackLayout Spacing="0">
-                            <ImageButton BackgroundColor="Transparent">
-                                <ImageButton.Source>
-                                    <FontImageSource Glyph="&#xf075;"
-                                                     FontFamily="FontFaRegular400"
-                                                     Color="#666"/>
-                                </ImageButton.Source>
-                            </ImageButton>
-                            <Label Text="1k"
-                                   HorizontalOptions="Center"/>
-                        </StackLayout>
-                        <StackLayout Spacing="0">
-                            <ImageButton BackgroundColor="Transparent">
-                                <ImageButton.Source>
-                                    <FontImageSource Glyph="&#xf53b;"
-                                                     FontFamily="FontFaSolid900"
-                                                     Color="CornflowerBlue"/>
-                                </ImageButton.Source>
-                            </ImageButton>
-                            <Label Text="12"
-                                   HorizontalOptions="Center"/>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-            </Grid>
-        </Frame>
+               </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </RefreshView>
         <Frame HasShadow="True"
                 CornerRadius="50"
                 VerticalOptions="End"
@@ -147,5 +157,9 @@
                 <TapGestureRecognizer Tapped="ClickGestureRecognizer_Clicked"/>
             </Frame.GestureRecognizers>
         </Frame>
+        <ActivityIndicator x:Name="Loader" 
+                               VerticalOptions="Center" 
+                               IsVisible="False" 
+                               IsRunning="True"/>
     </Grid>       
 </ContentPage>
