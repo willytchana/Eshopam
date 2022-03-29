@@ -1,5 +1,7 @@
 ﻿using Eshopam.Services;
+using Newtonsoft.Json;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Eshopam.Mobile
@@ -19,6 +21,7 @@ namespace Eshopam.Mobile
             {
                 UserService service = new UserService(App.ServiceBaseAddress);
                 var user = await service.LoginAsync(TxtUserName.Text, TxtPassword.Text);
+                await SecureStorage.SetAsync("user_session", JsonConvert.SerializeObject(user));
                 Application.Current.MainPage = new NavigationPage(new MainPage(user));
             }
             catch(UnauthorizedAccessException ex)

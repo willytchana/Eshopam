@@ -1,6 +1,9 @@
 ﻿using Eshopam.Models;
 using Eshopam.Services;
 using System;
+using System.IO;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Eshopam.Mobile
@@ -8,8 +11,8 @@ namespace Eshopam.Mobile
     public partial class ProductPhoto : ContentPage
     {
         private readonly UserModel user;
-        private readonly ProductModel product;
-
+        private ProductModel product;
+        private string imageFile;
         public ProductPhoto(UserModel user, ProductModel product)
         {
             InitializeComponent();
@@ -20,14 +23,18 @@ namespace Eshopam.Mobile
         private async void BtnSave_Clicked(object sender, EventArgs e)
         {
             Loader.IsVisible = true;
-            BtnNext.IsEnabled = false;
+            BtnSave.IsEnabled = false;
             try
             {
-                //UserService service = new UserService(App.ServiceBaseAddress);
-                //var user = await service.LoginAsync(TxtUserName.Text, TxtPassword.Text);
-                //await DisplayAlert("Good", user.Fullname, "Ok");
+                if (string.IsNullOrEmpty(imageFile))
+                    throw new InvalidOperationException("Please take a picture");
+
+                ProductService service = new ProductService(App.ServiceBaseAddress);
+                product = await service.CreateAsync(product, File.ReadAllBytes(imageFile));
+                await DisplayAlert("Good", "Save done !", "Ok");
+                await Navigation.PopToRootAsync(true);
             }
-            catch(UnauthorizedAccessException ex)
+            catch (InvalidOperationException ex)
             {
                 await DisplayAlert("Bad", ex.Message, "Ok");
             }
@@ -37,13 +44,62 @@ namespace Eshopam.Mobile
                 await DisplayAlert("Bad", "An error occured !", "Ok");
             }
             Loader.IsVisible = false;
-            BtnNext.IsEnabled = true;
+            BtnSave.IsEnabled = true;
         }
 
         private async void BtnCancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }
-        
+
+        private async void BtnPicture_Clicked(object sender, EventArgs e)
+        {
+            string[] buttons = { "Galery", "Camera" };
+            var result =  await DisplayActionSheet
+            (
+                "Take a picture",
+                "Cancel",
+                string.Empty,
+                buttons
+            );
+
+            FileResult photo = null;
+            if (result == buttons[0])
+            {
+                photo = await MediaPicker.PickPhotoAsync
+                (
+                    new MediaPickerOptions { Title = "Take a picture" }
+                );
+            }
+            else if (result == buttons[1])
+            {
+                photo = await MediaPicker.CapturePhotoAsync
+                (
+                    new MediaPickerOptions { Title = "Take a picture" }
+                );
+            }
+
+            Loader.IsVisible = true;
+            imageFile = await loadPicture(photo);
+            if(!string.IsNullOrEmpty(imageFile))
+                Img.Source = ImageSource.FromFile(imageFile);
+            Loader.IsVisible = false;
+        }
+
+        private async Task<string> loadPicture(FileResult photo)
+        {
+            if (photo == null)
+                return null;
+
+            var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+            using (var stream = await photo.OpenReadAsync())
+            {
+                using (var newStream = File.OpenWrite(newFile))
+                {
+                    await stream.CopyToAsync(newStream);
+                }
+            }
+            return newFile;
+        }
     }
 }

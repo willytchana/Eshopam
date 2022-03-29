@@ -4,20 +4,30 @@
              x:Class="Eshopam.Mobile.ProductPhoto"
              Style="{StaticResource ContentPageStyle}"
              NavigationPage.HasNavigationBar="False">
-    <ScrollView>
-        <Grid>
-            <StackLayout Spacing="10" 
-                         VerticalOptions="Center" 
-                         Padding="20">
-                
+    <Grid>
+        <Grid Padding="20" RowDefinitions="100, *, 150">
+            <Label Text="Add picture" 
+                    FontFamily="FontSamantha"
+                    FontSize="100" 
+                    HorizontalTextAlignment="Center"
+                    Grid.Row="0"/>
+            <Image x:Name="Img" 
+                    Source="icon.png" 
+                    Aspect="AspectFit"
+                    Grid.Row="1"/>
+            <StackLayout Grid.Row="2">
+                <Button x:Name="BtnPicture" 
+                        Text="Take a picture"
+                        Clicked="BtnPicture_Clicked">
+                </Button>
                 <Button x:Name="BtnSave" 
-                        Text="Next"
+                        Text="Save"
                         Style="{DynamicResource ButtonStyle}"
                         Clicked="BtnSave_Clicked"
                         ContentLayout="Right, 0">
                     <Button.ImageSource>
-                        <FontImageSource FontFamily="FontFaSolid900"
-                                         Glyph="&#xf105;"/>
+                        <FontImageSource FontFamily="FontFaRegular400"
+                                            Glyph="&#xf0c7;"/>
                     </Button.ImageSource>
                 </Button>
                 <Button x:Name="BtnCancel" 
@@ -25,11 +35,12 @@
                             TextColor="#666"
                             BackgroundColor="Transparent" 
                             Clicked="BtnCancel_Clicked"/>
+
             </StackLayout>
-            <ActivityIndicator x:Name="Loader" 
-                               VerticalOptions="Center" 
-                               IsVisible="False" 
-                               IsRunning="True"/>
-        </Grid>       
-    </ScrollView>
+        </Grid>
+        <ActivityIndicator x:Name="Loader" 
+                            VerticalOptions="Center" 
+                            IsVisible="False" 
+                            IsRunning="True"/>
+    </Grid>       
 </ContentPage>

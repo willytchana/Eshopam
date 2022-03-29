@@ -1,4 +1,5 @@
 ﻿using Eshopam.Models;
+using Newtonsoft.Json;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -21,10 +22,16 @@ namespace Eshopam.Mobile
                 else
                     serviceBaseAddress = "http://192.168.43.183:8083/api/";
             //#else
-                    //serviceBaseAddress = "https://eshopam.com/api/";
+            //serviceBaseAddress = "https://eshopam.com/api/";
             //#endif
-
-            MainPage = new NavigationPage(new MainPage(new UserModel()));
+            var json = SecureStorage.GetAsync("user_session").Result;
+            if(string.IsNullOrEmpty(json))
+                MainPage = new NavigationPage(new LoginPage());
+            else
+            {
+                var user = JsonConvert.DeserializeObject<UserModel>(json);
+                MainPage = new NavigationPage(new MainPage(user));
+            }
         }
 
         protected override void OnStart()

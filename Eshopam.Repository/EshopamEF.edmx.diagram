@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="Eshopam.Repository.Product" Width="1.5" PointX="5.25" PointY="0.75" />
         <AssociationConnector Association="Eshopam.Repository.FK_Product_Category" />
         <AssociationConnector Association="Eshopam.Repository.FK_Product_User" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
